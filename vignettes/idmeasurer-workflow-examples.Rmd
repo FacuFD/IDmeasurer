@@ -18,26 +18,43 @@ knitr::opts_chunk$set(
 )
 ```
 
-##Contents
-* Univariate individual identity metrics (F, PIC, HS)
-* Multivariate individual identity metrics (DS, MI, HS, HM)
-* Conversions between metrics
+
+##Contents {#contents}
+* [Univariate individual identity metrics (F, PIC, HS)](#univmet)
+* [Multivariate individual identity metrics (DS, MI, HS, HM)](#multivmet)
+* [Conversions between metrics](#convmet)
 
 ##Introduction
-'IDmeasurer' package accompanies an overview of metrics that have been suggested and used to measure indivdual identity in animal signals.
+'IDmeasurer' package accompanies the research article reviewing metrics that have been suggested and used to measure indivdual identity in animal signals. It allows calculation of different individual identity metrics and provides a aims to provide common tools for scholars studying individual identity in animal signals.
 
 The research article discussing these metrics in detail is available [here](https://www.biorxiv.org/content/10.1101/546143v1).
 
-Tested on continuous traits.
+Individual identity traits could be continuous (e.g., calling frequency, ) or discrete (e.g., presence of particular spot or pattern, presence of particular element in song). They also could be considered static (e.g., colour of an eye in humans), which remain constant or unchanged over a long time, or dynamic (e.g., voice pitch), which vary over time and depending on situation. The metrics reviewed here, in principle, could be used with any type of individual identity trait. Functions to calculate these metrics presented in this package, however, would currently be suitable for continuous and dynamic traits. The package now does not handle discrete and/or static traits, which reflects the current authors' needs. It is possible that working with discrete and/or static traits would be added in future.
 
-Comes along with several datasets.
+The package comes with the six empirical datasets used in the article. All of them focus on individual identity in animal acoustic signals - calls and songs.
 
 Load the package:
 ```{r}
 library(IDmeasurer)
 ```
 
-## Univariate individual identity metrics
+The functions calculating individual identity metrics in this package, in general, use imput in form of a data frame with the first column containing individual identity codes (factor) and and with subsequent columns containing measurements of a single or several different traits (numeric). THe functions to calculate identity metrics do not tranform the raw trait variables in any way so any required data transformation need to be done prior to calculating individuality metrics. The package involves six empirical datasets used in the article (`ANmodulation`, `ANspec`, `CCformants`, `CCspec`, `LAhighweewoo`, `SSgrunts`).
+
+An example of the typical data:
+
+```{r}
+summary(CCformants)
+```
+
+```{r}
+CCformants[1:20,]
+```
+
+Use `?CCformants` etc., to get background information about datasets.
+
+[Back to Contents](#contents)
+
+## Univariate individual identity metrics {#univmet}
 * ANOVA F-value
 * Potential of individual coding (PIC)
 * Beecher's information statistic (HS)
@@ -56,6 +73,8 @@ boxplot(paramvec~id, data=id3, xlab = 'Individual no.', ylab = 'variable 1', mai
 ```
 
 In both datasets, the mean of the trait is equal to 1000. Standard deviation between individual means (SDbetween) is implicitly set to 1 in the function. Because SDbetween is fixed, 'individuality' parameter basically changes stanadard deviation of values within individuals (SDwithin). When 'individuality' is close to zero, within individual variation is high. Parameter 'individuality' has to be larger than 0.
+
+[Back to Contents](#contents)
 
 ### ANOVA F-value (F)
 First quantification of individual identity in animal signals was done by using F-values from one-way ANOVA with individual identity as an independent variable and a trait as a dependent variable (F).
@@ -82,7 +101,9 @@ calcF(manyobs)
 
 The dataset with many observations per individual 'manyobs' has much larger F than the dataset with few observations per individual 'fewobs' despite the differences between individuals in both datasets are similar (Individuality = 0.5)
 
-Because of this problem, alternative metrics were introduced.
+Because of this problem, alternative metrics were introduced. 
+
+[Back to Contents](#contents)
 
 ### Potential of individual coding (PIC)
 Potential of individual coding (PIC) is based on sample independent coefficent of variation. It is the ratio of between and within individual coefficents of variation and it is robust to number of observarions per individual (as well as to number of individuals in dataset)
@@ -114,6 +135,7 @@ calcPICbetweentot(id0)
 calcPICbetweenmeans(id0)
 ```
 
+[Back to Contents](#contents)
 
 ### Beecher's information statistic (HS)
 Beecher's information statistic (HS) uses ANOVA F-value but makes it sampling independent. HS is robust to number of observarions per individual as well as to number of individuals in dataset.
@@ -164,6 +186,8 @@ calcHSngroups(id3)
 calcHSvarcomp(id3)
 ```
 
+[Back to Contents](#contents)
+
 ### Univariate metrics with multivariate datasets
 All the three functions can be used with multivariate datasets containing the identity codes in a first column and multiple traits in subsequent columns. In that case, metrics are calculated for each trait variable. For calculation of HS for separate variables the parameter sumHS must be set to FALSE.
 
@@ -173,8 +197,9 @@ calcPIC(CCformants)
 calcHS(CCformants, sumHS=F)
 ```
 
+[Back to Contents](#contents)
 
-## Multivariate individual identity metrics
+## Multivariate individual identity metrics {#multivmet}
 * Discrimination score (DS)
 * Mutual information (MI)
 * Beecher's information statistic (HS)
@@ -196,6 +221,8 @@ We generated two datasets with same properties (5 individuals, 10 observations p
 plot(id0[,2], id0[,3], xlab='trait 1', ylab='trait 2', pch=16, col=id0[,1])
 plot(id5[,2], id5[,3], xlab='trait 1', ylab='trait 2', pch=16, col=id5[,1])
 ```
+
+[Back to Contents](#contents)
 
 ### Discrimination score (DS)
 Most of the studies subject similar data to the discriminant function analysis and calculate discrimination score - the proportion or percentage of the samples that were classified to the correct individual.
@@ -240,6 +267,8 @@ calcDS(id5manyobs)
 
 Like in case of F-value in univariate case, if the values are biased it makes it difficult to compare the results of different studies with various sampling of individuals and observations per individual. Therefore, alternative metrics were suggested.
 
+[Back to Contents](#contents)
+
 ### Mutual information (MI)
 Mutual information (expressed in bits) has been suggested as unbiased metric to complement DS. However
 calcMI is subjected to same biases as DS, though these biases are reversed (like in case of DS adjusted for chance). For example, in case of number of individuals in dataset, DS will be higher for datasets with few individuals while MI will be higher for datasets with many individuals. 
@@ -252,6 +281,7 @@ calcDS(id5manyinds)
 calcMI(id5fewinds)
 calcMI(id5manyinds)
 ```
+[Back to Contents](#contents)
 
 ### Beechers information statistic (HS)
 HS can be used for univariate as well as for multivariate signals. It calculates and sums partial HS for each variable. The result prints HS for when HS is summed over all variables or over significant variables. Since unsignificant variables contribute a little to final value of HS we suggest to report HS for all variables.
@@ -266,6 +296,8 @@ calcHS(id5, sumHS=T)
 ```
 
 Also note, that for good estimate of HS values the number of trait variables should not exceed the number of individuals. For discussion of this issue, see the original article by Linhart et al. (2019).
+
+[Back to Contents](#contents)
 
 ### Information capacity (HM)
 HM has been suggested as variant of HS for particular type of signals where the variable traits are independent of each other. However, HS can be used for such signals as well.
@@ -317,10 +349,9 @@ Contrary, HM remains nearly unchanged and we would need to do separate analysis 
 calcHM(calcPCA(id5covar0))*5 # HM is multiplied by the number of variables to get individuality of entire signal
 calcHM(calcPCA(id5covar1))*5 # In this case, total individuality of entire signal is overestimated
 ```
+[Back to Contents](#contents)
 
-
-
-## Converting between measures
+## Conversions between metrics {#convmet}
 We believe that in future studies HS will be routinely reported as it is currently the best performing and the most universal individual identity metric available (Linhart et al. 2019). However, in past, various metrics were used and converting between the commonly used metric could help to compare results of different studies. As we have shown earlier, PIC can be viewed as equivalent to 2^HS and, therefore, the conversion is easy in case of univariate metrics. The most frequently used metric in multivariate case was DS. To convert DS to HS and vice versa, we simulated datasets with changing parameters (number of individuals and number of observations per individual) and used loess regression model to estimate values of HS based on DS (or DS based on HS) for a particular number of individuals and number of observations per individual in the sample. Note that loess model cannot predict values outside the values used to build the model, therefore the parameters must be within:
 
 * 5 - 40 individuals
@@ -348,3 +379,5 @@ With an argument `se = TRUE`, it is possible to get standard error for HS and DS
 #HSest$fit # estimated value of HS
 #HSest$se.fit # standard error for the estimate
 ```
+
+[Back to Contents](#contents)
