@@ -9,10 +9,10 @@
 #' calcMeanVec(ANmodulation)
 #'
 #' #correct use (with identity codes removed)
-#' calcMeanvec(ANmodulation[-1])
+#' calcMeanVec(ANmodulation[-1])
 #'
-#' @family
-#' @seealso
+#' @family calcHM support function
+#' @export
 
 calcMeanVec <- function(df){
   nvars <- ncol(df)

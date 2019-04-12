@@ -8,8 +8,8 @@
 #' @examples
 #' calcDistT(ANmodulation)
 #'
-#' @family
-#' @seealso
+#' @family calcHM support function
+#' @export
 
 calcDistT <- function(df){
   Y <- df[-1]

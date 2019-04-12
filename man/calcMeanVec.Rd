@@ -20,6 +20,11 @@ This function calculates centroid of the individual identity traits. Euclidean d
 calcMeanVec(ANmodulation)
 
 #correct use (with identity codes removed)
-calcMeanvec(ANmodulation[-1])
+calcMeanVec(ANmodulation[-1])
 
 }
+\seealso{
+Other calcHM support function: \code{\link{calcDistT}},
+  \code{\link{calcDistW}}
+}
+\concept{calcHM support function}

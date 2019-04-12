@@ -54,8 +54,8 @@ calcHSnpergroup <- function (df, sumHS = TRUE){
 
   for (k in 2:nvars) {
     modelFormula <- paste(vars[k], '~', vars[1])
-    fvalues [k] <- summary(aov(as.formula(modelFormula), data=df))[[1]][["F value"]][[1]]
-    Pr[k] <- summary(aov(as.formula(modelFormula), data=df))[[1]][["Pr(>F)"]][[1]]
+    fvalues [k] <- summary(stats::aov(stats::as.formula(modelFormula), data=df))[[1]][["F value"]][[1]]
+    Pr[k] <- summary(stats::aov(stats::as.formula(modelFormula), data=df))[[1]][["Pr(>F)"]][[1]]
     HS [k] <- log2(sqrt((fvalues[k]+(npergroup-1)) / npergroup)) #npergroup
   }
   Pr <- round(Pr, 3)

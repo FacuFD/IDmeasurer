@@ -20,14 +20,14 @@ GenerateUnivariate <- function(nindivs,nobs,betweenM, individuality) {
 
   id <- c()
   paramvec <- c()
-  means <- rnorm(nindivs, betweenM, 1)
+  means <- stats::rnorm(nindivs, betweenM, 1)
   indcodes <- seq(from=1, to=nindivs, by=1)
   indsds <- means # just to build same matrix as for means
-  indsds <- rep(sd(means)/individuality, nindivs) # calculates sd of means for each variable and sets the individual sd to be individuality times the sd between means
+  indsds <- rep(stats::sd(means)/individuality, nindivs) # calculates sd of means for each variable and sets the individual sd to be individuality times the sd between means
 
 
   for (i in 1:nindivs) {
-    paramvec <- c(paramvec, rnorm(nobs, means[i], indsds[i]))
+    paramvec <- c(paramvec, stats::rnorm(nobs, means[i], indsds[i]))
     id <- c(id, rep(indcodes[i], nobs))
   }
 

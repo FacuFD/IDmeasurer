@@ -20,8 +20,8 @@ calcF <- function(df) {
   pvals <- rep(NA, nvars)
   for (i in 1:nvars){
     modelFormula <- paste(names(df)[i+1], '~', names(df)[1])
-    f[i] <- summary(aov(as.formula(modelFormula), data=df))[[1]][["F value"]][[1]]
-    pvals[i] <- summary(aov(as.formula(modelFormula), data=df))[[1]][["Pr(>F)"]][[1]]
+    f[i] <- summary(stats::aov(stats::as.formula(modelFormula), data=df))[[1]][["F value"]][[1]]
+    pvals[i] <- summary(stats::aov(stats::as.formula(modelFormula), data=df))[[1]][["Pr(>F)"]][[1]]
 
   }
   traits <- names(df)[-1]

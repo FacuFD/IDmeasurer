@@ -22,3 +22,8 @@ mean. Euclidean distances are used.
 calcDistW(ANmodulation)
 
 }
+\seealso{
+Other calcHM support function: \code{\link{calcDistT}},
+  \code{\link{calcMeanVec}}
+}
+\concept{calcHM support function}

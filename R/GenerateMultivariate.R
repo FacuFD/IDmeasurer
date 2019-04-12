@@ -29,13 +29,13 @@ GenerateMultivariate <- function(nindivs, nobs, nvars, covar, individuality){
 
   #means for individuals and variables
   mu <- rep(0, nvars) # means of each variable set to zero
-  means <- mvrnorm(nindivs, mu = mu, Sigma = sigma) # generating means for individuals by each variable with a given covariance matrix
+  means <- MASS::mvrnorm(nindivs, mu = mu, Sigma = sigma) # generating means for individuals by each variable with a given covariance matrix
   #plot(means[,1], means[,2], pch=20)
 
   #sds for each variable
   indsds <- means # just to build same matrix as for means
   for (i in 1:nvars){
-    indsds[,i] <- rep(sd(means[,i])/individuality, nindivs) # calculates sd of means for each variable and sets the individual sd to be individuality times the sd between means
+    indsds[,i] <- rep(stats::sd(means[,i])/individuality, nindivs) # calculates sd of means for each variable and sets the individual sd to be individuality times the sd between means
   }
 
   indcodes <- seq(from=1, to=nindivs, by=1) #set up codes for individuals
@@ -50,7 +50,7 @@ GenerateMultivariate <- function(nindivs, nobs, nvars, covar, individuality){
 
     # generate nobs for each individual mean with respective sd; generate individual codes
     for (i in 1:nindivs) {
-      paramvec <- c(paramvec, rnorm(nobs, means[i,j], indsds[i,j]))
+      paramvec <- c(paramvec, stats::rnorm(nobs, means[i,j], indsds[i,j]))
       id <- c(id, rep(indcodes[i], nobs))
     }
     parammat[,j] <- paramvec #put generated values for each parameter to the matrix and go to next variable

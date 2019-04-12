@@ -20,14 +20,14 @@ calcPICbetweentot <- function(df) {
     grouping <- df[,1]
     x <- df[,i+1]
     idmean <- tapply(x, grouping, mean)
-    idsd <- tapply(x, grouping, sd)
+    idsd <- tapply(x, grouping, stats::sd)
     idn <- tapply(x, grouping, length)
     idwcv <- idsd / idmean
     #idwcv2 <- 100 * (1 + 1/(4*idn)) * (idsd / idmean)  # correction for low sample sizes
     meanWCV <- mean(idwcv, na.rm=T)
     #meanWCV2 <- mean(idwcv2, na.rm=T)   # correction for low sample size
 
-    BCV <- sd(x) / mean(x) ### ### Coefficient of variation between individuals calculated from all samples
+    BCV <- stats::sd(x) / mean(x) ### ### Coefficient of variation between individuals calculated from all samples
 
     PIC[i] <- BCV / meanWCV
     #PIC[i] <- (100 * BCV * (1 + 1/(4*length(x)))) / meanWCV2 # correction for low sample size

@@ -52,7 +52,7 @@ calcHSvarcomp <- function (df, sumHS=T) {
 
     for (k in 2:nvars) {
       modelFormula <- paste0(vars[k], '~1+(1|', vars[1], ')')
-      lmer.m1 <- lme4::lmer(as.formula(modelFormula), data=df)
+      lmer.m1 <- lme4::lmer(stats::as.formula(modelFormula), data=df)
       randomVar[k] <- (as.data.frame(lme4::VarCorr(lmer.m1))[1,4])
       residVar[k] <- as.data.frame(lme4::VarCorr(lmer.m1))[2,4]
       totalVar[k] <- randomVar[k]+residVar[k]

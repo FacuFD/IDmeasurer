@@ -20,3 +20,8 @@ distances between the centroid and each sample. Euclidean distances are used.
 calcDistT(ANmodulation)
 
 }
+\seealso{
+Other calcHM support function: \code{\link{calcDistW}},
+  \code{\link{calcMeanVec}}
+}
+\concept{calcHM support function}

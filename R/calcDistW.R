@@ -10,8 +10,8 @@
 #' @examples
 #' calcDistW(ANmodulation)
 #'
-#' @family
-#' @seealso
+#' @family calcHM support function
+#' @export
 
 calcDistW <- function (df) {
   indivs <- levels(df[,1])

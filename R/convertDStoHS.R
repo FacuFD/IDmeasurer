@@ -35,6 +35,6 @@ convertDStoHS <- function(nindivs, nobs, DS, se=FALSE) {
   if( any(DS < 0 | DS > 1) ) stop('DS outside of range; DS must be within 0 and 1')
 
   datazpred <- data.frame(w=nindivs, x=nobs, y=DS)
-  HSest <- predict(DStoHSloess, datazpred, se=se)
+  HSest <- stats::predict(DStoHSloess, datazpred, se=se)
   return(HSest)
 }
