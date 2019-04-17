@@ -7,13 +7,15 @@
 calcMeanVec(df)
 }
 \arguments{
-\item{df}{A dataframe with the individual identity traits without identity codes (NA will be produced for the column with identity code).}
+\item{df}{A data frame with the individual identity traits without identity
+codes (NA will be produced for the column with identity code).}
 }
 \value{
 Numeric vector with the centroid values for each trait.
 }
 \description{
-This function calculates centroid of the individual identity traits. Euclidean distances are used.
+This function calculates centroid of the individual identity traits.
+Euclidean distances are used.
 }
 \examples{
 #incorrect use (with identity codes, NA will be produced):

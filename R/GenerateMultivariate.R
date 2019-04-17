@@ -2,7 +2,9 @@
 #'
 #' This functions generates a dataset with desired parameters (number of
 #' individuals and number of observations per individual, number of variables
-#' and covariance between variables, individuality). Unlike for the function GenerateUnivariate trait means are not customizable and are always set to 0.
+#' and covariance between variables, individuality). Unlike for the function
+#' \code{GenerateUnivariate}, trait means are not customizable and are always set to 0.
+
 #' @param nindivs Indicates how many individuals should be in dataset
 #' @param nobs Indicates how many observations per individual should be in
 #'   dataset
@@ -62,18 +64,3 @@ GenerateMultivariate <- function(nindivs, nobs, nvars, covar, individuality){
 
   return(temp)
 }
-
-
-
-
-#### test function ####
-#nindivs <- 5 # there will be 5 individuals in the dataset
-#nobs <- 10 # there will be 10 call per each individual in the dataset
-#nvars <- 2 # there will be 2 variables
-#covar <- 0 # covarianece between variables will be zero (= variables will be independent)
-#individuality <- 10 # between-individual SD for each variable will be "individuality" times higher than within-individual SD
-#temp <- GenerateMultivariateDataset(nindivs,nobs,nvars,covar,individuality)
-#temp
-#plot(temp$X1, temp$X2, pch=c(0,1,2,3,4)[temp$id], main=paste0('Individuality (id) = ', individuality), xlab='variable 1', ylab='variable 2', cex=1.5, cex.lab=2, cex.main=2) #col=temp$id
-#rm(nindivs,nobs,nvars,covar,individuality,temp)
-

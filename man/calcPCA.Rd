@@ -7,7 +7,7 @@
 calcPCA(df)
 }
 \arguments{
-\item{df}{A dataframe with the first column indicating individual identity.}
+\item{df}{A data frame with the first column indicating individual identity.}
 }
 \value{
 df A data frame with the same attributes like the \code{df}, but the
@@ -15,21 +15,18 @@ df A data frame with the same attributes like the \code{df}, but the
 }
 \description{
 This function subjects the trait variables from the original dataset to the
-Principal component analysis (PCA, stats:prcomp) and calculates principal
-componenets scores for each sample. All variables are centered by subtracting
-the variable mean from a particular value and scaled to the unit variance by
-dividing the value by the standard deviation of a trait (stats::prcomp
-parameters 'center = T', 'scale = T'). Some functions like, for example,
-'calcHS' require uncorrelated input variables to calculate individual
-identity information properly.
+Principal component analysis (PCA, \code{stats:prcomp}) and calculates
+principal componenets scores for each sample. All variables are centered by
+subtracting the variable mean from a particular value and scaled to the unit
+variance by dividing the value by the standard deviation of a trait
+(\code{stats::prcomp} parameters \code{center = T}, \code{scale = T}). Some
+functions like, for example, \code{calcHS} require uncorrelated input
+variables to calculate individual identity information properly.
 }
 \examples{
 summary(ANmodulation)
 temp <- calcPIC(ANmodulation)
 summary(temp)
 
-}
-\seealso{
-\code{\link{calcHS}}
 }
 \concept{data transformation}

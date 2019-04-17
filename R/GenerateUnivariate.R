@@ -3,6 +3,7 @@
 #' This functions generates a dataset with desired parameters (number of
 #' individuals and number of observations per individual, mean of the parameter,
 #' individuality).
+
 #' @param nindivs Indicates how many individuals should be in dataset
 #' @param nobs Indicates how many observations per individual should be in dataset
 #' @param betweenM Indicates the mean value of the trait.

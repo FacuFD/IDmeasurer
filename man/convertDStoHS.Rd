@@ -23,9 +23,9 @@ If \code{se = FALSE}, Numeric value. DS for a specified number of
 }
 \description{
 This function converts DS to HS. Because the model used to convert values is
-derived from loess model, it cannot make predictions outside the range of the
-values used to construct the loess model. The model was tailored to the
-sampling frequently used by studies on individuality: \cr - number of
+derived from \code{stats::loess model}, it cannot make predictions outside
+the range of the values used to construct the model. The model was tailored
+to the sampling frequently used by studies on individuality: \cr - number of
 individuals should be between 5 and 40 individuals \cr - number of
 observations per individual should be between 5 - 20 \cr - DS value should be
 between 0 - 1 \cr\cr Consider increasing your sampling if number of
@@ -41,8 +41,6 @@ convertDStoHS(nindivs=10, nobs=10, DS=0.7)
 
 }
 \seealso{
-\code{\link{calcPIC}}, \code{\link{calcHS}}
-
 Other metric conversion: \code{\link{convertHStoDS}}
 }
 \concept{metric conversion}

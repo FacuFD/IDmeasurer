@@ -7,21 +7,22 @@
 calcPICbetweentot(df)
 }
 \arguments{
-\item{df}{A dataframe with the first column indicating individual identity.}
+\item{df}{A data frame with the first column indicating individual identity.}
 }
 \value{
 Numeric vector with PIC values for each variable in \code{df}.
 }
 \description{
-This function calculates Potential of individual coding for all variables within the dataset.
+This function calculates Potential of individual coding for all variables
+within the dataset. \cr\cr \strong{Reference:} Robisson, P. (1992). Roles of
+pitch and duration in the discrimination of the mate's call in the King
+penguin Aptenodytes patagonicus. Bioacoustics, 4, 25-36. \cr\cr
 }
 \examples{
 calcPICbetweentot(ANmodulation)
 
 }
 \seealso{
-\code{\link{calcPIC}}, \code{\link{calcHS}}
-
 Other individual identity metrics: \code{\link{calcDS}},
   \code{\link{calcF}}, \code{\link{calcHM}},
   \code{\link{calcHSngroups}},

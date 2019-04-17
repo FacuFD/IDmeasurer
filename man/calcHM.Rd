@@ -7,21 +7,22 @@
 calcHM(df)
 }
 \arguments{
-\item{df}{A dataframe with the first column indicating individual identity.}
+\item{df}{A data frame with the first column indicating individual identity.}
 }
 \value{
 Numeric value. Individual identity information capacity HM (in bits) in dataset.
 }
 \description{
-This function calculates information capacity.
+This function calculates information capacity of a signal. \cr\cr
+\strong{Reference:} Searby, A., & Jouventin, P. (2004). How to measure
+information carried by a modulated vocal signature? Journal of the Acoustical
+Society of America, 116, 3192-3198. doi:10.1121/1.1775271 \cr\cr
 }
 \examples{
 calcHM(ANmodulation)
 
 }
 \seealso{
-\code{\link{calcPIC}}, \code{\link{calcHS}}
-
 Other individual identity metrics: \code{\link{calcDS}},
   \code{\link{calcF}}, \code{\link{calcHSngroups}},
   \code{\link{calcHSnpergroup}}, \code{\link{calcHSntot}},

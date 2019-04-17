@@ -5,7 +5,7 @@
 #' individual sum of distances is known for each individual, it calculates their
 #' mean. Euclidean distances are used.
 #'
-#' @param df A dataframe with the first column indicating individual identity.
+#' @param df A data frame with the first column indicating individual identity.
 #' @return Numeric. Average within individual distance in dataset.
 #' @examples
 #' calcDistW(ANmodulation)

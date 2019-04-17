@@ -28,7 +28,8 @@ Data frame with the identity codes in the first column and trait
 \description{
 This functions generates a dataset with desired parameters (number of
 individuals and number of observations per individual, number of variables
-and covariance between variables, individuality). Unlike for the function GenerateUnivariate trait means are not customizable and are always set to 0.
+and covariance between variables, individuality). Unlike for the function
+\code{GenerateUnivariate}, trait means are not customizable and are always set to 0.
 }
 \examples{
 id1 <- GenerateMultivariate(nindivs=10, nobs=10, nvars=2, covar=0, individuality=1)

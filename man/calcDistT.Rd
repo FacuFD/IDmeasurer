@@ -7,7 +7,7 @@
 calcDistT(df)
 }
 \arguments{
-\item{df}{A dataframe with the first column indicating individual identity.}
+\item{df}{A data frame with the first column indicating individual identity.}
 }
 \value{
 Numeric. Total distance.

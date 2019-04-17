@@ -1,14 +1,16 @@
 #' Calculate information capacity (HM)
 #'
-#' This function calculates information capacity.
+#' This function calculates information capacity of a signal. \cr\cr
+#' \strong{Reference:} Searby, A., & Jouventin, P. (2004). How to measure
+#' information carried by a modulated vocal signature? Journal of the Acoustical
+#' Society of America, 116, 3192-3198. doi:10.1121/1.1775271 \cr\cr
 #'
-#' @param df A dataframe with the first column indicating individual identity.
+#' @param df A data frame with the first column indicating individual identity.
 #' @return Numeric value. Individual identity information capacity HM (in bits) in dataset.
 #' @examples
 #' calcHM(ANmodulation)
 #'
 #' @family individual identity metrics
-#' @seealso \code{\link{calcPIC}}, \code{\link{calcHS}}
 #' @export
 
 calcHM <- function(df){

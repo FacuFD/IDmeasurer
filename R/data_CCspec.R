@@ -5,7 +5,7 @@
 #'  \item \strong{Number of individuals:} 33
 #'  \item \strong{Number of calls per individual:} 10
 #'  \item \strong{Number of acoustic variables:} 7
-#'  \item \strong{Individual identity:} HS=5.15
+#'  \item \strong{Individual identity:} HS=5.68
 #'  \item \strong{Reference:} Budka, M., & Osiejuk, T. S. (2013). Formant
 #'  Frequencies are Acoustic Cues to Caller Discrimination and are a Weak
 #'  Indicator of the Body Size of Corncrake Males. Ethology, 119, 960-969.

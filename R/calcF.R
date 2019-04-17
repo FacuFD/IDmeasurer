@@ -2,15 +2,14 @@
 #'
 #' This function calculates ANOVA F-values (type I sum of squares) for all
 #' identity traits in dataset along with its significance. Each trait is used as
-#' dependent and identity code as independent variable.
+#' dependent and identity code as independent variable. \cr\cr \strong{Reference:} e.g., Miller, D. B. (1978). Species-typical and individually distinctive acoustic features of crow calls of red jungle fowl. Zeitschrift Fur Tierpsychologie-Journal of Comparative Ethology, 47, 182–193.
 #'
-#' @param df A dataframe with the first column indicating individual identity.
-#' @return Data frame with 11 rows and 3 columns (trait, f-value, and p-value).
+#' @param df A data frame with the first column indicating individual identity.
+#' @return A data frame with 11 rows and 3 columns (trait, f-value, and p-value).
 #' @examples
 #' calcF(ANmodulation)
 #'
 #' @family individual identity metrics
-#' @seealso \code{\link{calcPIC}}, \code{\link{calcHS}}
 #' @export
 
 calcF <- function(df) {

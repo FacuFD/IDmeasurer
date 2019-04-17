@@ -1,14 +1,16 @@
 #' Calculates potential of identity coding (PIC, variant=PICbetweentot)
 #'
-#' This function calculates Potential of individual coding for all variables within the dataset.
+#' This function calculates Potential of individual coding for all variables
+#' within the dataset. \cr\cr \strong{Reference:} Robisson, P. (1992). Roles of
+#' pitch and duration in the discrimination of the mate's call in the King
+#' penguin Aptenodytes patagonicus. Bioacoustics, 4, 25-36. \cr\cr
 #'
-#' @param df A dataframe with the first column indicating individual identity.
+#' @param df A data frame with the first column indicating individual identity.
 #' @return Numeric vector with PIC values for each variable in \code{df}.
 #' @examples
 #' calcPIC(ANmodulation)
 #'
 #' @family individual identity metrics
-#' @seealso \code{\link{calcPIC}}, \code{\link{calcHS}}
 #' @export
 
 calcPIC <- function(df) {

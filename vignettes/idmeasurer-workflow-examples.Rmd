@@ -25,20 +25,20 @@ knitr::opts_chunk$set(
 * [Conversions between metrics](#convmet)
 
 ##Introduction
-'IDmeasurer' package accompanies the research article reviewing metrics that have been suggested and used to measure indivdual identity in animal signals. It allows calculation of different individual identity metrics and provides a aims to provide common tools for scholars studying individual identity in animal signals.
+`IDmeasurer` package accompanies the research article reviewing metrics that have been suggested and used to measure indivdual identity in animal signals. It allows calculation of different individual identity metrics and aims to provide common tools for scholars studying individual identity in animal signals.
 
 The research article discussing these metrics in detail is available [here](https://www.biorxiv.org/content/10.1101/546143v1).
 
-Individual identity traits could be continuous (e.g., calling frequency, ) or discrete (e.g., presence of particular spot or pattern, presence of particular element in song). They also could be considered static (e.g., colour of an eye in humans), which remain constant or unchanged over a long time, or dynamic (e.g., voice pitch), which vary over time and depending on situation. The metrics reviewed here, in principle, could be used with any type of individual identity trait. Functions to calculate these metrics presented in this package, however, would currently be suitable for continuous and dynamic traits. The package now does not handle discrete and/or static traits, which reflects the current authors' needs. It is possible that working with discrete and/or static traits would be added in future.
+Individual identity traits could be continuous (e.g., calling frequency, size) or discrete (e.g., presence of particular spot or pattern, presence of particular element in song). They also could be considered static (e.g., colour of an eye in humans), which remain constant or unchanged over a long time, or dynamic (e.g., voice pitch), which vary over time and depending on situation. The metrics reviewed here, in principle, could be used with any type of individual identity trait. Functions to calculate these metrics presented in this package, however, would currently be suitable for continuous and dynamic traits. The package now does not handle discrete and/or static traits, which reflects the current needs of authors' research. It is possible that working with discrete and/or static traits would be added in future.
 
-The package comes with the six empirical datasets used in the article. All of them focus on individual identity in animal acoustic signals - calls and songs.
+The package comes with the six empirical datasets which are also referred to in the research article. All of the datsets present data on individual identity in animal acoustic signals - calls and songs.
 
 Load the package:
 ```{r}
 library(IDmeasurer)
 ```
 
-The functions calculating individual identity metrics in this package, in general, use imput in form of a data frame with the first column containing individual identity codes (factor) and and with subsequent columns containing measurements of a single or several different traits (numeric). THe functions to calculate identity metrics do not tranform the raw trait variables in any way so any required data transformation need to be done prior to calculating individuality metrics. The package involves six empirical datasets used in the article (`ANmodulation`, `ANspec`, `CCformants`, `CCspec`, `LAhighweewoo`, `SSgrunts`).
+The functions calculating individual identity metrics in this package, in general, use imput in form of a data frame with the first column containing individual identity codes (factor) and and with subsequent columns containing measurements of a single or several different traits (numeric). The functions to calculate identity metrics do not tranform the raw trait variables in any way so any required data transformation need to be done prior to calculating individuality metrics. The package involves six empirical datasets used in the article (`ANmodulation`, `ANspec`, `CCformants`, `CCspec`, `LAhighweewoo`, `SSgrunts`).
 
 An example of the typical data:
 
@@ -55,11 +55,11 @@ Use `?CCformants` etc., to get background information about datasets.
 [Back to Contents](#contents)
 
 ## Univariate individual identity metrics {#univmet}
-* ANOVA F-value
-* Potential of individual coding (PIC)
-* Beecher's information statistic (HS)
+* [ANOVA F-value](#f)
+* [Potential of individual coding (PIC)](#pic)
+* [Beecher's information statistic (HS)](#hs)
 
-Univariate metrics quantify individual identity contained within single trait. Function 'GenerateUnivariate' generates univariate dataset with desired parameters.
+Univariate metrics quantify individual identity contained within a single trait. Function `GenerateUnivariate` generates univariate dataset with desired parameters.
 
 ```{r}
 id0 <- GenerateUnivariate(nindivs=10, nobs=10, betweenM=1000, individuality=0.01)
@@ -72,14 +72,14 @@ boxplot(paramvec~id, data=id0, xlab = 'Individual no.', ylab = 'variable 1', mai
 boxplot(paramvec~id, data=id3, xlab = 'Individual no.', ylab = 'variable 1', main = 'Individuality = 3')
 ```
 
-In both datasets, the mean of the trait is equal to 1000. Standard deviation between individual means (SDbetween) is implicitly set to 1 in the function. Because SDbetween is fixed, 'individuality' parameter basically changes stanadard deviation of values within individuals (SDwithin). When 'individuality' is close to zero, within individual variation is high. Parameter 'individuality' has to be larger than 0.
+In both datasets, the mean of the trait is equal to 1000. Standard deviation between individual means (SDbetween) is implicitly set to 1 in the function. Because SDbetween is fixed, `individuality` parameter basically changes stanadard deviation of values within individuals (SDwithin). When `individuality` is close to zero, within individual variation is high. Parameter `individuality` has to be larger than 0.
 
 [Back to Contents](#contents)
 
-### ANOVA F-value (F)
+### ANOVA F-value (F) {#f}
 First quantification of individual identity in animal signals was done by using F-values from one-way ANOVA with individual identity as an independent variable and a trait as a dependent variable (F).
 
-Differences between individuals are large and significant in the 'temp3' dataset:
+Differences between individuals are large and significant in the `id3` dataset:
 
 ```{r}
 calcF(id0)
@@ -99,14 +99,14 @@ calcF(fewobs)
 calcF(manyobs)
 ```
 
-The dataset with many observations per individual 'manyobs' has much larger F than the dataset with few observations per individual 'fewobs' despite the differences between individuals in both datasets are similar (Individuality = 0.5)
+The dataset with many observations per individual `manyobs` has much larger F than the dataset with few observations per individual 'fewobs' despite the differences between individuals in both datasets are similar (Individuality = 0.5)
 
 Because of this problem, alternative metrics were introduced. 
 
 [Back to Contents](#contents)
 
-### Potential of individual coding (PIC)
-Potential of individual coding (PIC) is based on sample independent coefficent of variation. It is the ratio of between and within individual coefficents of variation and it is robust to number of observarions per individual (as well as to number of individuals in dataset)
+### Potential of individual coding (PIC) {#pic}
+Potential of individual coding (PIC) is based on the coefficent of variation which itself is sample independent. PIC is the ratio of between and within individual coefficents of variation and it is robust to number of observarions per individual (as well as to number of individuals in dataset).
 
 ```{r}
 calcPIC(fewobs)
@@ -137,7 +137,7 @@ calcPICbetweenmeans(id0)
 
 [Back to Contents](#contents)
 
-### Beecher's information statistic (HS)
+### Beecher's information statistic (HS) {#hs}
 Beecher's information statistic (HS) uses ANOVA F-value but makes it sampling independent. HS is robust to number of observarions per individual as well as to number of individuals in dataset.
 
 ```{r}
@@ -152,7 +152,7 @@ calcHS(postrait)[2]
 calcHS(posnegtrait)[2]
 ```
 
-This is very important adventage because it allows transforming trait variables. For example, it is possible to use Principal Component Analysis (PCA) on the raw traits and calculate HS of of the uncorrelated Principal components and sum them together to get the HS of entire signal. Note that summing or averaging of PIC values is not a valid approach because the traits can be (and often are) correlated and, therefore, the resulting PIC values are overestimated.
+This is very important adventage because it allows transforming trait variables. For example, it is possible to use Principal Component Analysis (PCA) on the raw traits and calculate HS of of the uncorrelated Principal components and sum them together to get the HS for an entire signal. Note that summing or averaging of PIC values is not a valid approach because the traits can be (and often are) correlated and, therefore, the resulting PIC values are overestimated.
 
 Both HS and PIC are looking for the ratio of between and within individual variation and their values are closely related, but to see this, we have to convert HS into the number of potentially unique signatures. HS is expressed in bits of information and to convert it into number of signatures we have to use 2 as the base and and HS as an exponent. In that case, HS and PIC correlate almost perfectly, eventhough they are not numerically entirely equivalent.
 
@@ -176,7 +176,7 @@ calcPIC(id4)
 2^calcHS(id4)[2]
 ```
 
-**Variants of HS**. In the literature, HS has been calculated by several different approaches. These approaches are implemented in functions: `calcHSntot`, `calcHSngroups`, `calcHSnpergroup`, and `calcHSvarcomp`. `calcHS` is equivalent to `calcHSnpergroup` because it matches the assumptions stated in the original article by Beecher (1989). Unlike the other variants, `calcHSvarcomp` calculates HS by variance components from mixed models. This approach allows to control for possible confounding factors and variables in the model, however, we found the values to be twice as large as the values of HS calculated with `calcHS`.
+**Variants of HS**. In the literature, HS has been calculated by several different approaches. These approaches are implemented in functions: `calcHSntot`, `calcHSngroups`, `calcHSnpergroup`, and `calcHSvarcomp`. `calcHS` is equivalent to `calcHSnpergroup` because it matches the assumptions stated in the original article by Beecher (1989) (see `?calcHS` for the reference). Unlike the other variants, `calcHSvarcomp` calculates HS by ucing variance components from mixed models. This approach allows to control for possible confounding factors and variables in the model, however, we found the values to be twice as large as the values of HS calculated with `calcHS`.
 
 ```{r}
 calcHS(id3)
@@ -200,23 +200,24 @@ calcHS(CCformants, sumHS=F)
 [Back to Contents](#contents)
 
 ## Multivariate individual identity metrics {#multivmet}
-* Discrimination score (DS)
-* Mutual information (MI)
-* Beecher's information statistic (HS)
-* Information capacity (HM)
+* [Discrimination score (DS)](#ds)
+* [Mutual information (MI)](#mi)
+* [Beecher's information statistic (HS)](#hsmultiv)
+* [Information capacity (HM)](#hm)
 
 ```{r}
 library(MASS)
 ```
 
-Multivariate metrics quantify individual identity contained in multiple traits of signal. Function 'GenerateMultivariate' generates multivariate dataset with desired parameters.
+Multivariate metrics quantify individual identity contained in multiple traits of signal. Function `GenerateMultivariate` generates multivariate dataset with desired parameters.
 
 ```{r}
 id0 <- GenerateMultivariate(nindivs=5, nobs=10, nvar=2, covar=0.9, individuality=0.01)
 id5 <- GenerateMultivariate(nindivs=5, nobs=10, nvar=2, covar=0.9, individuality=5)
 ```
 
-We generated two datasets with same properties (5 individuals, 10 observations per individual, two trait variables with covariance 0.9 between the two variables) except individuality which is low for id0 and high for id5. High individuality is clearly visible in the scatterplot of the two traits where samples belonging to the same individual are plotted with the same colour and form clearly recognizable clusters. Further, note that due to high covariance between the two variables, the most of the samples is organized along the diagonal of the scatterplot. 
+We generated two datasets with same properties (5 individuals, 10 observations per individual, two trait variables with covariance 0.9 between the two variables) except individuality which is low for `id0` and high for `id5`. High individuality is clearly visible in the scatterplot of the two traits where samples belonging to the same individual are plotted with the same colour and form clearly recognizable clusters. 
+
 ```{r, fig.show='hold'}
 plot(id0[,2], id0[,3], xlab='trait 1', ylab='trait 2', pch=16, col=id0[,1])
 plot(id5[,2], id5[,3], xlab='trait 1', ylab='trait 2', pch=16, col=id5[,1])
@@ -224,7 +225,7 @@ plot(id5[,2], id5[,3], xlab='trait 1', ylab='trait 2', pch=16, col=id5[,1])
 
 [Back to Contents](#contents)
 
-### Discrimination score (DS)
+### Discrimination score (DS){#ds}
 Most of the studies subject similar data to the discriminant function analysis and calculate discrimination score - the proportion or percentage of the samples that were classified to the correct individual.
 
 ```{r}
@@ -232,9 +233,9 @@ calcDS(id0)
 calcDS(id5)
 ```
 
-In case of id0, individuality is very low and it is hard to discriminate individuals. Hence, the value of DS should be close to value expected by chance classification (0.2 for 5 individuals). On the other hand, discrimination is easy and DS close to maximum value of 1 in case of id5.
+In case of `id0`, individuality is very low and it is hard to discriminate individuals. Hence, the value of DS should be close to value expected by chance classification (0.2 for 5 individuals). On the other hand, discrimination is easy and DS close to maximum value of 1 in case of `id5`.
 
-However, if with many individuals in the sample, it is more likely to find very similar individuals that are easy to confuse. Hence, discrimination score will be lower for large datasets. This is shown here on two datasets with the same individuality (individuality = 5) but few (nindivs = 5) and many (nindivs = 100) individuals.
+However, if with many individuals in the sample, it is more likely to find very similar individuals that are easy to confuse. Hence, discrimination score will be lower for large datasets. This is shown here on two datasets with the same individuality (individuality = 5) but few (`nindivs = 5`) and many (`nindivs = 100`) individuals.
 ```{r}
 id5fewinds <- GenerateMultivariate(nindivs=5, nobs=10, nvar=2, covar=0.9, individuality=5)
 id5manyinds <- GenerateMultivariate(nindivs=100, nobs=10, nvar=2, covar=0.9, individuality=5)
@@ -248,7 +249,7 @@ calcDS(id5fewinds)/0.2 # expected classification by chance for 5 individuals: 1 
 calcDS(id5manyinds)/0.01 # expected classification by chance for 5 individuals: 1 / 100 = 0.01
 ```
 
-Tranforming the raw trait values into uncorrelated principal components with Principal component analysis has little impact on the DS values (HS, which is discussed later, requires PCA so this is shown here for comparison):
+Tranforming the raw trait values into uncorrelated principal components with Principal Component Analysis has little impact on the DS values (HS, which is discussed later, requires PCA so this is shown here for comparison):
 
 ```{r}
 calcDS(calcPCA(id5fewinds))/0.2 # expected classification by chance for 5 individuals: 1 / 5 = 0.2
@@ -264,14 +265,12 @@ calcDS(id5fewobs)
 calcDS(id5manyobs)
 ```
 
-
 Like in case of F-value in univariate case, if the values are biased it makes it difficult to compare the results of different studies with various sampling of individuals and observations per individual. Therefore, alternative metrics were suggested.
 
 [Back to Contents](#contents)
 
-### Mutual information (MI)
-Mutual information (expressed in bits) has been suggested as unbiased metric to complement DS. However
-calcMI is subjected to same biases as DS, though these biases are reversed (like in case of DS adjusted for chance). For example, in case of number of individuals in dataset, DS will be higher for datasets with few individuals while MI will be higher for datasets with many individuals. 
+### Mutual information (MI){#mi}
+Mutual information has been suggested as unbiased metric to complement DS. However, calcMI is subjected to the same kind of biases as DS, though these biases are reversed (like in case of DS adjusted for chance). For example, in case of number of individuals in dataset, DS will be higher for datasets with few individuals while MI will be higher for datasets with many individuals. 
 
 ```{r}
 id5fewinds <- GenerateMultivariate(nindivs=5, nobs=10, nvar=2, covar=0.9, individuality=2)
@@ -283,29 +282,30 @@ calcMI(id5manyinds)
 ```
 [Back to Contents](#contents)
 
-### Beechers information statistic (HS)
-HS can be used for univariate as well as for multivariate signals. It calculates and sums partial HS for each variable. The result prints HS for when HS is summed over all variables or over significant variables. Since unsignificant variables contribute a little to final value of HS we suggest to report HS for all variables.
+### Beechers information statistic (HS){#hsmultiv}
+HS can be used for univariate as well as for multivariate signals. It calculates and sums partial HS values of each variable. The result prints HS summed over all trait variables in dataset or over traits that are significantly different between individuals only. Since non-significant variables contribute only a little to final value of HS we suggest to report HS for all variables.
 
 ```{r}
 calcHS(calcPCA(id5), sumHS=T)
 ```
 
-Note, that HS for multivariate signal needs to be calculated on uncorrelated variables. Here, we use the function calcPCA which uses Principal component analysis to convert the raw trait variables into uncorrelated principal components in the dataset. Including correlated variables overestimates the value of HS:
+Note, that HS for multivariate signal needs to be calculated on uncorrelated variables. Here, we use the function `calcPCA` which uses Principal Component Analysis PCA to convert the raw trait variables into uncorrelated Principal components in the dataset. Including correlated variables overestimates the value of HS:
 ```{r}
-calcHS(id5, sumHS=T)
+calcHS(id5, sumHS=T) # HS is overestimated if trait variables are correlated
 ```
 
-Also note, that for good estimate of HS values the number of trait variables should not exceed the number of individuals. For discussion of this issue, see the original article by Linhart et al. (2019).
+Also note, that for good estimate of HS values the number of trait variables should not exceed the number of individuals. For discussion of this issue, see the research article introducing this package by Linhart et al. (2019).
 
 [Back to Contents](#contents)
 
-### Information capacity (HM)
+### Information capacity (HM){#hm}
 HM has been suggested as variant of HS for particular type of signals where the variable traits are independent of each other. However, HS can be used for such signals as well.
 
 ```{r}
 id5 <- GenerateMultivariate(nindivs=10, nobs=10, nvar=2, covar=0, individuality=5)
 calcHS(id5)
 ```
+
 HM is an adaptation of HS and is also expressed in bits (bits of individual identity information) but the value is surprisingly different.
 ```{r}
 calcHM(id5)
@@ -315,6 +315,7 @@ It turns out that for cases in which trait variables are independent, HM calcula
 ```{r}
 calcHM(id5)*2
 ```
+
 We can try to generate datasets with different individualities to see how the HS and HM values match each other. We will also change number of variables to 5.
 ```{r}
 id1 <- GenerateMultivariate(nindivs=10, nobs=10, nvar=5, covar=0, individuality=1)
@@ -326,13 +327,13 @@ plot(x,y)
 abline(lm(y~x))
 ```
 
-Problem arises, if the trait variables are not uncorrelated.
+Problem arises, if the trait variables are correlated.
 ```{r}
 id5covar0 <- GenerateMultivariate(nindivs=50, nobs=10, nvar=5, covar=0, individuality=5) # uncorrelated traits
 id5covar1 <- GenerateMultivariate(nindivs=50, nobs=10, nvar=5, covar=1, individuality=5) # perfectly correlated traits
 ```
 
-In such cases, HS correctly reflects lower real dimensionality of the data.
+In such cases, HS correctly reflects lower real dimensionality of the data and hence, lower total individual identity of a signal.
 ```{r}
 calcHS(calcPCA(id5covar0))
 calcHS(calcPCA(id5covar1))
@@ -344,7 +345,7 @@ calcDS(calcPCA(id5covar0))
 calcDS(calcPCA(id5covar1))
 ```
 
-Contrary, HM remains nearly unchanged and we would need to do separate analysis of dimensionality of data to estimate identity information of the entire signal. Simple multiplying by number of variables would overestimate individual identity information in case of correlated traits.
+Contrary, HM remains nearly unchanged and we would need to do separate analysis of dimensionality of data to estimate identity information of the entire signal. Simple multiplying HM by number of variables would overestimate individual identity information in case that traits are correlated.
 ```{r}
 calcHM(calcPCA(id5covar0))*5 # HM is multiplied by the number of variables to get individuality of entire signal
 calcHM(calcPCA(id5covar1))*5 # In this case, total individuality of entire signal is overestimated
@@ -352,7 +353,7 @@ calcHM(calcPCA(id5covar1))*5 # In this case, total individuality of entire signa
 [Back to Contents](#contents)
 
 ## Conversions between metrics {#convmet}
-We believe that in future studies HS will be routinely reported as it is currently the best performing and the most universal individual identity metric available (Linhart et al. 2019). However, in past, various metrics were used and converting between the commonly used metric could help to compare results of different studies. As we have shown earlier, PIC can be viewed as equivalent to 2^HS and, therefore, the conversion is easy in case of univariate metrics. The most frequently used metric in multivariate case was DS. To convert DS to HS and vice versa, we simulated datasets with changing parameters (number of individuals and number of observations per individual) and used loess regression model to estimate values of HS based on DS (or DS based on HS) for a particular number of individuals and number of observations per individual in the sample. Note that loess model cannot predict values outside the values used to build the model, therefore the parameters must be within:
+We believe that in future studies HS will be routinely reported as it is currently the best performing and the most universal individual identity metric available. However, in past, various metrics were used and converting between the commonly used metric could help to compare results of different studies. As we have shown earlier, PIC can be viewed as equivalent to 2^HS and, therefore, the conversion is easy in case of univariate metrics. The most frequently used metric in multivariate case was DS. To convert DS to HS and vice versa, we simulated datasets with changing parameters (number of individuals and number of observations per individual) and used loess regression model to estimate values of HS based on DS (or DS based on HS) for a particular number of individuals and number of observations per individual in the sample. Note that loess model cannot predict values outside the values used to build the model, therefore the parameters must be within:
 
 * 5 - 40 individuals
 * 5 - 20 observations per individual
@@ -373,11 +374,11 @@ DSest <- convertHStoDS(nindivs=10, nobs=10, HS=HS)
 print(paste('real DS = ', DS, '; estimated DSest = ', round(DSest, 2)))
 ```
 
-With an argument `se = TRUE`, it is possible to get standard error for HS and DS estimates.
+With an argument `se = TRUE`, it is possible to get standard error for HS and DS estimates (note that this may take a bit longer to calculate).
 ```{r}
-#HSest <- convertDStoHS(nindivs=10, nobs=10, DS=DS, se=TRUE)
-#HSest$fit # estimated value of HS
-#HSest$se.fit # standard error for the estimate
+HSest <- convertDStoHS(nindivs=10, nobs=10, DS=DS, se=TRUE)
+HSest$fit # estimated value of HS
+HSest$se.fit # standard error for the estimate
 ```
 
 [Back to Contents](#contents)

@@ -24,7 +24,7 @@ ANmodulation
  \item \strong{Number of individuals:} 33
  \item \strong{Number of calls per individual:} 10
  \item \strong{Number of acoustic variables:} 11
- \item \strong{Individual identity:} HS=3.39
+ \item \strong{Individual identity:} HS=3.48
  \item \strong{Reference:} Linhart, P., & Salek,
 M. (2017). The assessment of biases in the acoustic discrimination of
 individuals. PLOS ONE, 12(5), e0177206. doi:10.1371/journal.pone.0177206

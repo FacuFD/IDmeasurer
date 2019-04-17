@@ -5,7 +5,7 @@
 #'  \item \strong{Number of individuals:} 33
 #'  \item \strong{Number of calls per individual:} 10
 #'  \item \strong{Number of acoustic variables:} 6
-#'  \item \strong{Individual identity:} HS=3.57
+#'  \item \strong{Individual identity:} HS=3.83
 #'  \item \strong{Reference:} Osiejuk, unpublished data
 #'}
 #' Male Yellow-breasted boubous were recorded in Bamenda region in Cameroon.

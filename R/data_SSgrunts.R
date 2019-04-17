@@ -5,7 +5,7 @@
 #'  \item \strong{Number of individuals:} 33
 #'  \item \strong{Number of calls per individual:} 10
 #'  \item \strong{Number of acoustic variables:} 10
-#'  \item \strong{Individual identity:} HS=2.57
+#'  \item \strong{Individual identity:} HS=3.18
 #'  \item \strong{Reference:} Syrova, M., Policht, R., Linhart, P., & Spinka, M.
 #'  (2017). Ontogeny of individual and litter identity signaling in grunts of
 #'  piglets. The Journal of the Acoustical Society of America, 142(5),

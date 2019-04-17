@@ -1,0 +1,18 @@
+citHeader("To cite IDmeasurer in publications use:")
+
+citEntry(entry = "Article",
+  title        = "Measuring individual identity information in animal signals: Overview and performance of available identity metrics",
+  author       = personList(as.person("Pavel Linhart"),
+                   as.person("Tomasz Osiejuk"), as.person("Michal Budka"), as.person("Martin Salek"), as.person("Marek Spinka"), as.person("Richard Policht"), as.person("Michaela Syrova"), as.person("Daniel T. Blumstein")),
+  journal      = "BioRxive",
+  year         = "2019",
+  volume       = "",
+  number       = "",
+  pages        = "546143",
+  doi          = "10.1101/546143",
+  url          = "https://www.biorxiv.org/content/10.1101/546143v1",
+
+  textVersion  =
+  paste("Linhart P, Osiejuk T, Budka M, Salek M, Spinka M, Policht R, Syrova M, Blumstein DT. 2019. Measuring individual identity information in animal signals: Overview and performance of available identity metrics. BioRxiv, 546143, doi:10.1101/546143.
+")
+)
