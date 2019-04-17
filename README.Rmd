@@ -13,7 +13,6 @@ knitr::opts_chunk$set(
 )
 ```
 # IDmeasurer
-
 The goal of IDmeasurer is to provide tools for assessment and quantification of individual identity information in animal signals. 
 
 ## Installation

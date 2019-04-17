@@ -18,13 +18,16 @@ knitr::opts_chunk$set(
 )
 ```
 
+Welcome to IDmeasurer.
 
-##Contents {#contents}
+## Contents {#contents}
+
 * [Univariate individual identity metrics (F, PIC, HS)](#univmet)
 * [Multivariate individual identity metrics (DS, MI, HS, HM)](#multivmet)
 * [Conversions between metrics](#convmet)
 
-##Introduction
+## Introduction
+
 `IDmeasurer` package accompanies the research article reviewing metrics that have been suggested and used to measure indivdual identity in animal signals. It allows calculation of different individual identity metrics and aims to provide common tools for scholars studying individual identity in animal signals.
 
 The research article discussing these metrics in detail is available [here](https://www.biorxiv.org/content/10.1101/546143v1).
@@ -152,7 +155,7 @@ calcHS(postrait)[2]
 calcHS(posnegtrait)[2]
 ```
 
-This is very important adventage because it allows transforming trait variables. For example, it is possible to use Principal Component Analysis (PCA) on the raw traits and calculate HS of of the uncorrelated Principal components and sum them together to get the HS for an entire signal. Note that summing or averaging of PIC values is not a valid approach because the traits can be (and often are) correlated and, therefore, the resulting PIC values are overestimated.
+This is very important advantage because it allows transforming trait variables. For example, it is possible to use Principal Component Analysis (PCA) on the raw traits and calculate HS of of the uncorrelated Principal components and sum them together to get the HS for an entire signal. Note that summing or averaging of PIC values is not a valid approach because the traits can be (and often are) correlated and, therefore, the resulting PIC values are overestimated.
 
 Both HS and PIC are looking for the ratio of between and within individual variation and their values are closely related, but to see this, we have to convert HS into the number of potentially unique signatures. HS is expressed in bits of information and to convert it into number of signatures we have to use 2 as the base and and HS as an exponent. In that case, HS and PIC correlate almost perfectly, eventhough they are not numerically entirely equivalent.
 
@@ -374,11 +377,6 @@ DSest <- convertHStoDS(nindivs=10, nobs=10, HS=HS)
 print(paste('real DS = ', DS, '; estimated DSest = ', round(DSest, 2)))
 ```
 
-With an argument `se = TRUE`, it is possible to get standard error for HS and DS estimates (note that this may take a bit longer to calculate).
-```{r}
-HSest <- convertDStoHS(nindivs=10, nobs=10, DS=DS, se=TRUE)
-HSest$fit # estimated value of HS
-HSest$se.fit # standard error for the estimate
-```
+With an argument `se = TRUE`, it is possible to get standard error for HS and DS estimates (note that this may take a bit longer to calculate). The estimate is then accessed with `HSest$fit` and standard error with `HSest$se.fit` calls.
 
 [Back to Contents](#contents)

@@ -1,35 +1,42 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-IDmeasurer
-==========
 
-The goal of IDmeasurer is to provide tools for assessment and quantification of individual identity information in animal signals.
+# IDmeasurer
 
-Installation
-------------
+The goal of IDmeasurer is to provide tools for assessment and
+quantification of individual identity information in animal signals.
 
-The package is currently available at GitHub:
+## Installation
+
+The package is currently available at
+GitHub:
 
 ``` r
 devtools::install_github('pygmy83/IDmeasurer', build = TRUE, build_opts = c("--no-resave-data", "--no-manual"))
 ```
 
-The package has been also submitted to CRAN and it should be soon possible to install the released version of IDmeasurer from [CRAN](https://CRAN.R-project.org) with:
+The package has been also submitted to CRAN and it should be soon
+possible to install the released version of IDmeasurer from
+[CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("IDmeasurer")
 ```
 
-Example
--------
+## Example
 
-This is a basic example which shows you how to calculate individual identity information in territorial calls of little owls (ANspec example data):
+This is a basic example which shows you how to calculate individual
+identity information in territorial calls of little owls (ANspec example
+data):
 
 ``` r
 library(IDmeasurer)
 ```
 
-Input data for the calculation of identity metrics in this package, in general, is a data frame with the first column containing individual identity codes (factor) and the other columns containing individuality traits (numeric).
+Input data for the calculation of identity metrics in this package, in
+general, is a data frame with the first column containing individual
+identity codes (factor) and the other columns containing individuality
+traits (numeric).
 
 ``` r
 summary(ANspec)   
@@ -51,7 +58,8 @@ summary(ANspec)
 #> 
 ```
 
-This calculates HS metric for every single trait variable in the dataset.
+This calculates HS metric for every single trait variable in the
+dataset.
 
 ``` r
 calcHS(ANspec, sumHS=F)
@@ -65,7 +73,10 @@ calcHS(ANspec, sumHS=F)
 #> 8  q75  0 0.93
 ```
 
-To calculate the HS for an entire signal, it is neccessary to have uncorrelated variables in dataset. Raw (correlated) trait variables need to be transformed into principal components by Principal component analysis.
+To calculate the HS for an entire signal, it is neccessary to have
+uncorrelated variables in dataset. Raw (correlated) trait variables need
+to be transformed into principal components by Principal component
+analysis.
 
 ``` r
 temp <- calcPCA(ANspec) 

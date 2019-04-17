@@ -42,7 +42,7 @@ calls measured from each male.\cr\cr
 Seven variables were selected to measure duration of the first syllable of
 the call and its basic spectral parameters of each first syllable of the call
 like the peak frequency, distribution of frequency amplitudes within
-spectrum, and range of the frequencies (minimum and maximum). Additionaly,
+spectrum, and range of the frequencies (minimum and maximum). Additionally,
 the duration of the call was measured. Variables were extracted in SASLab Pro
 by Avisoft.
 }
