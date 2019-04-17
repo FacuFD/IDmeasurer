@@ -3,8 +3,13 @@
 
 # IDmeasurer
 
-The goal of IDmeasurer is to provide tools for assessment and
+The goal of `IDmeasurer` package is to provide tools for assessment and
 quantification of individual identity information in animal signals.
+This package accompanies a research article by Linhart et al.:
+[‘Measuring individual identity information in animal signals:
+Overview and performance of available identity
+metrics’](https://www.biorxiv.org/content/10.1101/546143v1), which can
+currently be accessed at BioRxive.
 
 ## Installation
 
@@ -16,7 +21,7 @@ devtools::install_github('pygmy83/IDmeasurer', build = TRUE, build_opts = c("--n
 ```
 
 The package has been also submitted to CRAN and it should be soon
-possible to install the released version of IDmeasurer from
+possible to install the released version of `IDmeasurer` from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
@@ -25,9 +30,8 @@ install.packages("IDmeasurer")
 
 ## Example
 
-This is a basic example which shows you how to calculate individual
-identity information in territorial calls of little owls (ANspec example
-data):
+This is a basic example which shows how to calculate individual identity
+information in territorial calls of little owls (`ANspec` example data):
 
 ``` r
 library(IDmeasurer)
@@ -75,7 +79,7 @@ calcHS(ANspec, sumHS=F)
 
 To calculate the HS for an entire signal, it is neccessary to have
 uncorrelated variables in dataset. Raw (correlated) trait variables need
-to be transformed into principal components by Principal component
+to be transformed into principal components by the Principal component
 analysis.
 
 ``` r
